@@ -1,0 +1,40 @@
+// VS Code Settings
+{
+    "workbench.iconTheme": "vscode-icons",
+    "gitlens.advanced.messages": {
+        "suppressCommitHasNoPreviousCommitWarning": false,
+        "suppressCommitNotFoundWarning": false,
+        "suppressFileNotUnderSourceControlWarning": false,
+        "suppressGitVersionWarning": false,
+        "suppressLineUncommittedWarning": false,
+        "suppressNoRepositoryWarning": false,
+        "suppressResultsExplorerNotice": false,
+        "suppressUpdateNotice": false,
+        "suppressWelcomeNotice": true
+    },
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.colorTheme": "Palenight Operator",
+    "sync.gist": "a378c6a9d37135fe12b07564d58ca5c4",
+    "sync.lastUpload": "2018-02-04T15:56:48.803Z",
+    "sync.autoDownload": false,
+    "sync.autoUpload": false,
+    "sync.lastDownload": "",
+    "sync.forceDownload": false,
+    "sync.anonymousGist": false,
+    "sync.host": "",
+    "sync.pathPrefix": "",
+    "sync.quietSync": false,
+    "sync.askGistName": false,
+    "terminal.integrated.fontFamily": "ShureTechMono Nerd Font Mono",
+    "terminal.integrated.fontSize": 13,
+    "editor.fontFamily": "'OperatorMono Nerd Font','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontWeight": "400",
+    "editor.fontSize": 15,
+    "editor.lineHeight": 21,
+    "editor.letterSpacing": 0.5,
+    "editor.fontLigatures": true,
+    "editor.cursorWidth": 3,
+    "files.associations": {
+        "*.js": "javascript"
+    },
+}
