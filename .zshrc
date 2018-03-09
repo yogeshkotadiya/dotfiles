@@ -23,6 +23,9 @@ zsh_wifi_signal(){
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
+export TERM="xterm-256color"
+
+export PATH=~/.npm-global/bin:$PATH
 # =============================================================================
 #                                   Plugins
 # =============================================================================
@@ -51,8 +54,9 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
 # Supports oh-my-zsh plugins and the like
 if [[ $OSTYPE = (linux)* ]]; then
-	zplug "plugins/archlinux", from:oh-my-zsh, if:"which pacman"
-	zplug "plugins/dnf",       from:oh-my-zsh, if:"which dnf"
+#	zplug "plugins/ubuntu",	   from:oh-my-zsh, if:"which apt"
+#	zplug "plugins/archlinux", from:oh-my-zsh, if:"which pacman"
+#	zplug "plugins/dnf",       from:oh-my-zsh, if:"which dnf"
 fi
 
 if [[ $OSTYPE = (darwin)* ]]; then
@@ -61,7 +65,7 @@ if [[ $OSTYPE = (darwin)* ]]; then
 	zplug "plugins/macports", from:oh-my-zsh, if:"which port"
 fi
 
-zplug "plugins/archlinux", from:oh-my-zsh
+#zplug "plugins/archlinux", from:oh-my-zsh
 zplug "plugins/common-aliase", from:oh-my-zsh
 zplug "plugins/colored-man-pages", from:oh-my-zsh
 zplug "plugins/colorize", from:oh-my-zsh
@@ -78,6 +82,7 @@ zplug "plugins/tmux", from:oh-my-zsh
 zplug "plugins/tmuxinator", from:oh-my-zsh
 zplug "plugins/urltools", from:oh-my-zsh
 zplug "plugins/web-search", from:oh-my-zsh
+#zplug "plugins/ubuntu", from:oh-my-zsh
 zplug "plugins/z", from:oh-my-zsh
 zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/go", from:oh-my-zsh
@@ -152,7 +157,7 @@ DEFAULT_COLOR=$DEFAULT_FOREGROUND
 #DEFAULT_USER=$USER
 
 POWERLEVEL9K_MODE="nerdfont-complete"
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 #POWERLEVEL9K_SHORTEN_STRATEGY="truncate_right"
 
 POWERLEVEL9K_DIR_OMIT_FIRST_CHARACTER=false
@@ -160,16 +165,16 @@ POWERLEVEL9K_DIR_OMIT_FIRST_CHARACTER=false
 POWERLEVEL9K_ALWAYS_SHOW_CONTEXT=true
 POWERLEVEL9K_ALWAYS_SHOW_USER=false
 
-POWERLEVEL9K_CONTEXT_TEMPLATE="\uF109 %m"
+POWERLEVEL9K_CONTEXT_TEMPLATE="\uF311 %m"
 
 POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND="$DEFAULT_FOREGROUND"
 POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND="$DEFAULT_BACKGROUND"
 POWERLEVEL9K_CONTEXT_ROOT_FOREGROUND="$DEFAULT_FOREGROUND"
 POWERLEVEL9K_CONTEXT_ROOT_BACKGROUND="$DEFAULT_BACKGROUND"
 
-POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR="\uE0B4"
+POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR="\uE0B0"
 POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR="%F{$(( $DEFAULT_BACKGROUND - 2 ))}|%f"
-POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR="\uE0B6"
+POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR="\uE0B2"
 POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR="%F{$(( $DEFAULT_BACKGROUND - 2 ))}|%f"
 
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
@@ -186,14 +191,14 @@ POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 #POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
 #POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{008}> %f"
 
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="╭"
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="╭%F{080}"
 #POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="❱ "
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="╰\uF460 "
+POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="╰%F{080}\uF460%F{079}\uF460%F{078}\uF460 %f"
 
 #POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context ssh root_indicator dir_writable dir )
 #POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon root_indicator context dir_writable dir vcs)
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator context dir_writable dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time background_jobs status time ssh)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time background_jobs ssh nvm node_version)
 
 POWERLEVEL9K_VCS_CLEAN_BACKGROUND="green"
 POWERLEVEL9K_VCS_CLEAN_FOREGROUND="$DEFAULT_BACKGROUND"
@@ -234,7 +239,7 @@ POWERLEVEL9K_VCS_GIT_ICON=""
 
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND="$DEFAULT_BACKGROUND"
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND="$DEFAULT_FOREGROUND"
-POWERLEVEL9K_EXECUTION_TIME_ICON="\u23F1"
+POWERLEVEL9K_EXECUTION_TIME_ICON="\uf017"
 
 #POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=0
 #POWERLEVEL9K_COMMAND_EXECUTION_TIME_PRECISION=0
@@ -253,8 +258,8 @@ POWERLEVEL9K_ROOT_INDICATOR_FOREGROUND="magenta"
 POWERLEVEL9K_ROOT_INDICATOR_BACKGROUND="$DEFAULT_BACKGROUND"
 POWERLEVEL9K_ROOT_INDICATOR_BACKGROUND="$(( $DEFAULT_BACKGROUND + 2 ))"
 POWERLEVEL9K_ROOT_INDICATOR_BACKGROUND="$(( $DEFAULT_BACKGROUND - 2 ))"
-#POWERLEVEL9K_ROOT_ICON=$'\uFF03' # ＃
-POWERLEVEL9K_ROOT_ICON=$'\uF198'  # 
+POWERLEVEL9K_ROOT_ICON=$'\uFF03' # ＃
+#POWERLEVEL9K_ROOT_ICON=$'\uF198'  # 
 
 POWERLEVEL9K_SSH_FOREGROUND="$DEFAULT_FOREGROUND"
 POWERLEVEL9K_SSH_FOREGROUND="yellow"
