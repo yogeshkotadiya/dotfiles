@@ -53,11 +53,11 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:2
 #zplug "robbyrussell/oh-my-zsh", use:"lib/*.zsh"
 
 # Supports oh-my-zsh plugins and the like
-if [[ $OSTYPE = (linux)* ]]; then
+#if [[ $OSTYPE = (linux)* ]]; then
 #	zplug "plugins/ubuntu",	   from:oh-my-zsh, if:"which apt"
 #	zplug "plugins/archlinux", from:oh-my-zsh, if:"which pacman"
 #	zplug "plugins/dnf",       from:oh-my-zsh, if:"which dnf"
-fi
+#fi
 
 if [[ $OSTYPE = (darwin)* ]]; then
 	zplug "plugins/osx",      from:oh-my-zsh
