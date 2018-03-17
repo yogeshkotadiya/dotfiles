@@ -59,11 +59,11 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:2
 #	zplug "plugins/dnf",       from:oh-my-zsh, if:"which dnf"
 #fi
 
-if [[ $OSTYPE = (darwin)* ]]; then
-	zplug "plugins/osx",      from:oh-my-zsh
-	zplug "plugins/brew",     from:oh-my-zsh, if:"which brew"
-	zplug "plugins/macports", from:oh-my-zsh, if:"which port"
-fi
+#if [[ $OSTYPE = (darwin)* ]]; then
+#	zplug "plugins/osx",      from:oh-my-zsh
+#	zplug "plugins/brew",     from:oh-my-zsh, if:"which brew"
+#	zplug "plugins/macports", from:oh-my-zsh, if:"which port"
+#fi
 
 #zplug "plugins/archlinux", from:oh-my-zsh
 zplug "plugins/common-aliase", from:oh-my-zsh
