@@ -52,19 +52,6 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:2
 #zplug "zplug/zplug"
 #zplug "robbyrussell/oh-my-zsh", use:"lib/*.zsh"
 
-# Supports oh-my-zsh plugins and the like
-#if [[ $OSTYPE = (linux)* ]]; then
-#	zplug "plugins/ubuntu",	   from:oh-my-zsh, if:"which apt"
-#	zplug "plugins/archlinux", from:oh-my-zsh, if:"which pacman"
-#	zplug "plugins/dnf",       from:oh-my-zsh, if:"which dnf"
-#fi
-
-#if [[ $OSTYPE = (darwin)* ]]; then
-#	zplug "plugins/osx",      from:oh-my-zsh
-#	zplug "plugins/brew",     from:oh-my-zsh, if:"which brew"
-#	zplug "plugins/macports", from:oh-my-zsh, if:"which port"
-#fi
-
 #zplug "plugins/archlinux", from:oh-my-zsh
 zplug "plugins/common-aliase", from:oh-my-zsh
 zplug "plugins/colored-man-pages", from:oh-my-zsh
