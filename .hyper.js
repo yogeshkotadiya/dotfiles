@@ -23,7 +23,7 @@ module.exports = {
     cursorShape: 'BLOCK',
 
     // set to true for blinking cursor
-    cursorBlink: false,
+    cursorBlink: true,
 
     // color of the text
     foregroundColor: '#fff',
@@ -122,7 +122,11 @@ module.exports = {
   // in development, you can create a directory under
   // `~/.hyper_plugins/local/` and include it here
   // to load it and avoid it being `npm install`ed
-  localPlugins: [],
+  localPlugins: [
+  	'hypercwd',
+	'hyper-tab-icons',
+	'hyper-tabs-enhanced',
+  ],
 
   keymaps: {
     // Example
