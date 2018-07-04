@@ -378,6 +378,9 @@ alias 9='pu -9'
 alias pu='() { pushd $1 &> /dev/null; dirs -v; }'
 alias po='() { popd &> /dev/null; dirs -v; }'
 
+#=========== Ubuntu Aliases ==================================================
+alias apd='sudo apt update'
+alias apdg='sudo apt update && sudo apt upgrade'
 zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
 
 # =============================================================================
