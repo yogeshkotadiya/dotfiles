@@ -1,3 +1,105 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=~/.npm-global/bin:$PATH
+export TERM="xterm-256color"
+
+# Path to your oh-my-zsh installation.
+export ZSH=/home/yogesh/.oh-my-zsh
+
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="powerlevel9k/powerlevel9k"
+
+# Set list of themes to load
+# Setting this variable when ZSH_THEME=random
+# cause zsh load theme from this variable instead of
+# looking in ~/.oh-my-zsh/themes/
+# An empty array have no effect
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+  git zsh-autosuggestions
+)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Powerline
+if [[ -r /usr/share/powerline/bindings/zsh/powerline.zsh ]]; then
+    source /usr/share/powerline/bindings/zsh/powerline.zsh
+fi
+
 # =============================================================================
 #                                   Functions
 # =============================================================================
@@ -9,133 +111,12 @@ powerlevel9k_random_color(){
 	printf "%03d" $code
 }
 
-zsh_wifi_signal(){
-	local signal=$(nmcli -t device wifi | grep '^*' | awk -F':' '{print $6}')
-    local color="yellow"
-    [[ $signal -gt 75 ]] && color="green"
-    [[ $signal -lt 50 ]] && color="red"
-    echo -n "%F{$color}\uf1eb" # \uf1eb is 
-}
-
 # =============================================================================
 #                                   Variables
 # =============================================================================
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
-export TERM="xterm-256color"
-export PATH=~/.npm-global/bin:$PATH
-# =============================================================================
-#                                   Plugins
-# =============================================================================
-# Check if zplug is installed
-
-[ ! -d ~/.zplug ] && git clone https://github.com/zplug/zplug ~/.zplug
-source ~/.zplug/init.zsh
-
-# zplug
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-
-# zsh-users
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-history-substring-search"
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-
-#zplug "zsh-users/zsh-completions",              defer:0
-#zplug "zsh-users/zsh-autosuggestions",          defer:2, on:"zsh-users/zsh-completions"
-#zplug "zsh-users/zsh-syntax-highlighting",      defer:3, on:"zsh-users/zsh-autosuggestions"
-#zplug "zsh-users/zsh-history-substring-search", defer:3, on:"zsh-users/zsh-syntax-highlighting"
-
-# oh-my-zsh
-#zplug "zplug/zplug"
-#zplug "robbyrussell/oh-my-zsh", use:"lib/*.zsh"
-
-#zplug "plugins/archlinux", from:oh-my-zsh
-zplug "plugins/common-aliase", from:oh-my-zsh
-zplug "plugins/colored-man-pages", from:oh-my-zsh
-zplug "plugins/colorize", from:oh-my-zsh
-zplug "plugins/command-not-found", from:oh-my-zsh
-zplug "plugins/copydir", from:oh-my-zsh
-zplug "plugins/copyfile", from:oh-my-zsh
-zplug "plugins/cp", from:oh-my-zsh
-zplug "plugins/dircycle", from:oh-my-zsh
-zplug "plugins/encode64", from:oh-my-zsh
-zplug "plugins/extract", from:oh-my-zsh
-zplug "plugins/history", from:oh-my-zsh
-zplug "plugins/nmap",   from:oh-my-zsh
-zplug "plugins/tmux", from:oh-my-zsh
-zplug "plugins/tmuxinator", from:oh-my-zsh
-zplug "plugins/urltools", from:oh-my-zsh
-zplug "plugins/web-search", from:oh-my-zsh
-#zplug "plugins/ubuntu", from:oh-my-zsh
-zplug "plugins/z", from:oh-my-zsh
-zplug "plugins/git", from:oh-my-zsh
-zplug "plugins/go", from:oh-my-zsh
-zplug "plugins/svn", from:oh-my-zsh
-zplug "plugins/node", from:oh-my-zsh
-zplug "plugins/npm", from:oh-my-zsh
-#zplug "plugins/nvm", from:oh-my-zsh
-zplug "plugins/bundler", from:oh-my-zsh
-zplug "plugins/gem", from:oh-my-zsh
-zplug "plugins/rbenv", from:oh-my-zsh
-zplug "plugins/pip", from:oh-my-zsh
-zplug "plugins/sudo", from:oh-my-zsh
-#zplug "themes/gnzh", from:oh-my-zsh, as:theme
-
-#zplug "plugins/git",    from:oh-my-zsh, if:"which git"
-#zplug "plugins/go",     from:oh-my-zsh, if:"which go"
-#zplug "plugins/golang", from:oh-my-zsh, if:"which go"
-#zplug "plugins/nmap",   from:oh-my-zsh, if:"which nmap"
-#zplug "plugins/sudo",   from:oh-my-zsh, if:"which sudo"
-#zplug "plugins/tmux",   from:oh-my-zsh, if:"which tmux"
-
-#zplug "plugins/bundler", from:oh-my-zsh, if:"which bundle"
-#zplug "plugins/colored-man-pages", from:oh-my-zsh
-#zplug "plugins/extract", from:oh-my-zsh
-#zplug "plugins/fancy-ctrl-z", from:oh-my-zsh
-#zplug "plugins/git", from:oh-my-zsh, if:"which git"
-#zplug "plugins/globalias", from:oh-my-zsh
-#zplug "plugins/gpg-agent", from:oh-my-zsh, if:"which gpg-agent"
-#zplug "plugins/httpie", from:oh-my-zsh, if:"which httpie"
-#zplug "plugins/nanoc", from:oh-my-zsh, if:"which nanoc"
-#zplug "plugins/vi-mode", from:oh-my-zsh
-
-# plugins
-
-# Enhanced cd
-zplug "b4b4r07/enhancd", use:enhancd.sh
-
-# Bookmarks and jump
-#zplug "jocelynmallon/zshmarks"
-
-# Enhanced dir list with git features
-zplug "supercrabtree/k"
-
-# Tips for aliases
-#zplug "djui/alias-tips"
-
-# Auto-close and delete matching delimiters
-zplug "hlissner/zsh-autopair", defer:2
-
-# Docker completion
-zplug "felixr/docker-zsh-completion"
-
-# Jump back to parent directory
-zplug "tarrasch/zsh-bd"
-
-# Simple zsh calculator
-zplug "arzzen/calc.plugin.zsh"
-
-# Directory colors
-zplug "seebi/dircolors-solarized", ignore:"*", as:plugin
-
-# Load theme
-zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
-
-# Theme setup
-
-# Easily switch primary foreground/background colors
 DEFAULT_FOREGROUND=006 DEFAULT_BACKGROUND=235
 DEFAULT_COLOR=$DEFAULT_FOREGROUND
 
@@ -170,21 +151,21 @@ POWERLEVEL9K_STATUS_VERBOSE=true
 POWERLEVEL9K_STATUS_CROSS=true
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
-#POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%F{cyan}\u256D\u2500%f"
-#POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{014}\u2570%F{cyan}\uF460%F{073}\uF460%F{109}\uF460%f "
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%F{080}\u256D\u2500%f"
+POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{080}\u2570%F{080}\uF460%F{079}\uF460%F{078}\uF460%f "
 #POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="╭─%f"
 #POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="╰─%F{008}\uF460 %f"
 #POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
 #POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{008}> %f"
 
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="╭%F{080}"
-#POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="❱ "
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="╰%F{080}\uF460%F{079}\uF460%F{078}\uF460 %f"
+#POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="╭"
+#POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="╰\uF460 "
 
 #POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context ssh root_indicator dir_writable dir )
-#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon root_indicator context dir_writable dir vcs)
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator context dir_writable dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time background_jobs ssh nvm node_version)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time background_jobs status ssh node_version)
+
+POWERLEVEL9K_NODE_VERSION_FOREGROUND=253
 
 POWERLEVEL9K_VCS_CLEAN_BACKGROUND="green"
 POWERLEVEL9K_VCS_CLEAN_FOREGROUND="$DEFAULT_BACKGROUND"
@@ -218,14 +199,14 @@ POWERLEVEL9K_TIME_FORMAT="%D{%T \uF017}" #  15:29:33
 POWERLEVEL9K_TIME_FOREGROUND="$DEFAULT_FOREGROUND"
 POWERLEVEL9K_TIME_BACKGROUND="$DEFAULT_BACKGROUND"
 
-POWERLEVEL9K_VCS_GIT_GITHUB_ICON=""
-POWERLEVEL9K_VCS_GIT_BITBUCKET_ICON=""
+POWERLEVEL9K_VCS_GIT_GITHUB_ICON="\uE709"
+POWERLEVEL9K_VCS_GIT_BITBUCKET_ICON="\uE703"
 POWERLEVEL9K_VCS_GIT_GITLAB_ICON=""
-POWERLEVEL9K_VCS_GIT_ICON=""
+POWERLEVEL9K_VCS_GIT_ICON="\uE702"
 
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND="$DEFAULT_BACKGROUND"
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND="$DEFAULT_FOREGROUND"
-POWERLEVEL9K_EXECUTION_TIME_ICON="\uf017"
+POWERLEVEL9K_EXECUTION_TIME_ICON="\u23F1"
 
 #POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=0
 #POWERLEVEL9K_COMMAND_EXECUTION_TIME_PRECISION=0
@@ -261,7 +242,7 @@ POWERLEVEL9K_HOST_REMOTE_BACKGROUND="$DEFAULT_BACKGROUND"
 
 POWERLEVEL9K_HOST_ICON_FOREGROUND="$DEFAULT_FOREGROUND"
 POWERLEVEL9K_HOST_ICON_BACKGROUND="$DEFAULT_BACKGROUND"
-POWERLEVEL9K_HOST_ICON="\uF109" # 
+POWERLEVEL9K_HOST_ICON="\uF119" # 
 
 POWERLEVEL9K_OS_ICON_FOREGROUND="$DEFAULT_FOREGROUND"
 POWERLEVEL9K_OS_ICON_BACKGROUND="$DEFAULT_BACKGROUND"
@@ -281,6 +262,75 @@ POWERLEVEL9K_BATTERY_CHARGING_BACKGROUND="$DEFAULT_BACKGROUND"
 POWERLEVEL9K_BATTERY_CHARGED_BACKGROUND="$DEFAULT_BACKGROUND"
 POWERLEVEL9K_BATTERY_DISCONNECTED_BACKGROUND="$DEFAULT_BACKGROUND"
 
+# zsh-syntax-highlighting
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+ZSH_HIGHLIGHT_PATTERNS+=("rm -rf *" "fg=white,bold,bg=red")
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[path]="fg=white"
+ZSH_HIGHLIGHT_STYLES[path_pathseparator]="fg=grey"
+ZSH_HIGHLIGHT_STYLES[alias]="fg=cyan"
+ZSH_HIGHLIGHT_STYLES[builtin]="fg=cyan"
+ZSH_HIGHLIGHT_STYLES[function]="fg=cyan"
+ZSH_HIGHLIGHT_STYLES[command]="fg=green"
+ZSH_HIGHLIGHT_STYLES[precommand]="fg=green"
+ZSH_HIGHLIGHT_STYLES[hashed-command]="fg=green"
+ZSH_HIGHLIGHT_STYLES[commandseparator]="fg=yellow"
+ZSH_HIGHLIGHT_STYLES[redirection]="fg=magenta"
+ZSH_HIGHLIGHT_STYLES[bracket-level-1]="fg=cyan,bold"
+ZSH_HIGHLIGHT_STYLES[bracket-level-2]="fg=green,bold"
+ZSH_HIGHLIGHT_STYLES[bracket-level-3]="fg=magenta,bold"
+ZSH_HIGHLIGHT_STYLES[bracket-level-4]="fg=yellow,bold"
+
+# =============================================================================
+#                                   Plugins
+# =============================================================================
+# Check if zplug is installed
+[ ! -d ~/.zplug ] && git clone https://github.com/zplug/zplug ~/.zplug
+#source ~/.zplug/init.zsh && zplug update
+source ~/.zplug/init.zsh
+
+#zplug "b4b4r07/enhancd", use:init.sh
+zplug "b4b4r07/enhancd", use:enhancd.sh
+#zplug "b4b4r07/zsh-vimode-visual", defer:3
+zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+#zplug "knu/zsh-manydots-magic", use:manydots-magic, defer:2
+zplug "seebi/dircolors-solarized", ignore:"*", as:plugin
+
+#zplug "plugins/bundler", from:oh-my-zsh, if:"which bundle"
+#zplug "plugins/colored-man-pages", from:oh-my-zsh
+#zplug "plugins/extract", from:oh-my-zsh
+#zplug "plugins/fancy-ctrl-z", from:oh-my-zsh
+#zplug "plugins/git", from:oh-my-zsh, if:"which git"
+#zplug "plugins/globalias", from:oh-my-zsh
+#zplug "plugins/gpg-agent", from:oh-my-zsh, if:"which gpg-agent"
+#zplug "plugins/httpie", from:oh-my-zsh, if:"which httpie"
+#zplug "plugins/nanoc", from:oh-my-zsh, if:"which nanoc"
+#zplug "plugins/vi-mode", from:oh-my-zsh
+
+zplug "plugins/git",    from:oh-my-zsh, if:"which git"
+zplug "plugins/go",     from:oh-my-zsh, if:"which go"
+zplug "plugins/golang", from:oh-my-zsh, if:"which go"
+zplug "plugins/nmap",   from:oh-my-zsh, if:"which nmap"
+zplug "plugins/sudo",   from:oh-my-zsh, if:"which sudo"
+zplug "plugins/tmux",   from:oh-my-zsh, if:"which tmux"
+
+# Supports oh-my-zsh plugins and the like
+if [[ $OSTYPE = (linux)* ]]; then
+	zplug "plugins/archlinux", from:oh-my-zsh, if:"which pacman"
+	zplug "plugins/dnf",       from:oh-my-zsh, if:"which dnf"
+	zplug "plugins/ubuntu",    from:oh-my-zsh, if:"which apt"
+fi
+
+if [[ $OSTYPE = (darwin)* ]]; then
+	zplug "plugins/osx",      from:oh-my-zsh
+	zplug "plugins/brew",     from:oh-my-zsh, if:"which brew"
+	zplug "plugins/macports", from:oh-my-zsh, if:"which port"
+fi
+
+zplug "zsh-users/zsh-completions",              defer:0
+zplug "zsh-users/zsh-autosuggestions",          defer:2, on:"zsh-users/zsh-completions"
+zplug "zsh-users/zsh-syntax-highlighting",      defer:3, on:"zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-history-substring-search", defer:3, on:"zsh-users/zsh-syntax-highlighting"
 
 # =============================================================================
 #                                   Options
@@ -353,13 +403,9 @@ else
 	alias vim='() { $(whence -p vim) $@ }'
 fi
 
-# Generic command adaptations
+# Generic command adaptations.
 alias grep='() { $(whence -p grep) --color=auto $@ }'
 alias egrep='() { $(whence -p egrep) --color=auto $@ }'
-
-# Custom helper aliases
-alias ccat='highlight -O ansi'
-alias rm='rm -v'
 
 # Directory management
 alias la='ls -a'
@@ -378,11 +424,15 @@ alias 9='pu -9'
 alias pu='() { pushd $1 &> /dev/null; dirs -v; }'
 alias po='() { popd &> /dev/null; dirs -v; }'
 
-#=========== Ubuntu Aliases ==================================================
-alias apd='sudo apt update'
-alias apdg='sudo apt update && sudo apt upgrade'
 zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
 
+# Ubuntu aliases
+alias apd="sudo apt update"
+alias apg="sudo apt upgrade"
+alias apdg="sudo apt update && sudo apt upgrade"
+
+# Git aliases
+alias gcm="git commit -m"
 # =============================================================================
 #                                Key Bindings
 # =============================================================================
@@ -441,18 +491,17 @@ setup_agents() {
 	gpg_keys=$(gpg -K --with-colons 2>/dev/null | awk -F : '$1 == "sec" { print $5 }')
     if (( $#ssh_keys > 0 )) || (( $#gpg_keys > 0 )); then
 	  alias run_agents='() { $(whence -p keychain) --quiet --eval --inherit any-once --agents ssh,gpg $ssh_keys ${(f)gpg_keys} }'
-	  #[[ -t ${fd:-0} || -p /dev/stdin ]] && eval `run_agents`
+	  [[ -t ${fd:-0} || -p /dev/stdin ]] && eval `run_agents`
 	  unalias run_agents
     fi
   fi
 }
-
 setup_agents
 unfunction setup_agents
 
 # Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install plugins? [y/N]: "
+if ! zplug check; then
+    printf "Install? [y/N]: "
     if read -q; then
         echo; zplug install
     fi
@@ -461,7 +510,6 @@ fi
 # Then, source plugins and add commands to $PATH
 zplug load
 
-# dircolors
 if zplug check "seebi/dircolors-solarized"; then
   if which gdircolors &> /dev/null; then
 	alias dircolors='() { $(whence -p gdircolors) }'
@@ -472,7 +520,7 @@ if zplug check "seebi/dircolors-solarized"; then
   fi
 fi
 
-# history
+# History
 if zplug check "zsh-users/zsh-history-substring-search"; then
 	zmodload zsh/terminfo
 	bindkey "$terminfo[kcuu1]" history-substring-search-up
@@ -481,35 +529,10 @@ if zplug check "zsh-users/zsh-history-substring-search"; then
 	bindkey "^[[1;5B" history-substring-search-down
 fi
 
-# highlighting
-if zplug check "zsh-users/zsh-syntax-highlighting"; then
-	#ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
-	ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
-	ZSH_HIGHLIGHT_PATTERNS=('rm -rf *' 'fg=white,bold,bg=red')
-
-	typeset -A ZSH_HIGHLIGHT_STYLES
-	ZSH_HIGHLIGHT_STYLES[cursor]='bg=yellow'
-	ZSH_HIGHLIGHT_STYLES[globbing]='none'
-	ZSH_HIGHLIGHT_STYLES[path]='fg=white'
-	ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=grey'
-	ZSH_HIGHLIGHT_STYLES[alias]='fg=cyan'
-	ZSH_HIGHLIGHT_STYLES[builtin]='fg=cyan'
-	ZSH_HIGHLIGHT_STYLES[function]='fg=cyan'
-	ZSH_HIGHLIGHT_STYLES[command]='fg=green'
-	ZSH_HIGHLIGHT_STYLES[precommand]='fg=green'
-	ZSH_HIGHLIGHT_STYLES[hashed-command]='fg=green'
-	ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=yellow'
-	ZSH_HIGHLIGHT_STYLES[redirection]='fg=magenta'
-	ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=cyan,bold'
-	ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=green,bold'
-	ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=magenta,bold'
-	ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=yellow,bold'
-fi
-
 [ -d "$HOME/bin" ] && export PATH="$HOME/bin:$PATH"
 
 # Source local zsh customizations.
-[[ -f ~/.zsh_rclocal ]] && source ~/.zsh_rclocal
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
 # Source functions and aliases.
 [[ -f ~/.zsh_functions ]] && source ~/.zsh_functions
