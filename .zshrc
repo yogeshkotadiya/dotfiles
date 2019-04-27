@@ -1,10 +1,34 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=~/.npm-global/bin:$PATH
-export TERM="xterm-256color"
+#export PATH=~/.npm-global/bin:$PATH
 
+# User or Hostname Name
+HOSTNAME="yogesh"
+
+export PATH=~/.yarn/bin:$PATH
+#export TERM="xterm-256color"
+export VISUAL="vim"
 # Path to your oh-my-zsh installation.
-export ZSH=/home/yogesh/.oh-my-zsh
+export ZSH=/home/$HOSTNAME/.oh-my-zsh
+
+# Java and Android Studio Paths
+
+export PATH=/usr/lib/jvm/java-8-openjdk/bin:$PATH
+export ANDROID_HOME=/home/$HOSTNAME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+# Go-lang Settings
+
+export GOROOT=/usr/lib/go
+export PATH=$PATH:$GOROOT/bin
+export GOPATH=/home/$HOSTNAME/go
+export PATH=$PATH:$GOPATH/bin
+
+# Flutter Env
+export PATH=/home/$HOSTNAME/flutter/bin:$PATH
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -61,7 +85,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git zsh-autosuggestions
+  git zsh-autosuggestions ssh-agent
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -84,7 +108,7 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
+export SSH_KEY_PATH="~/.ssh/rsa_id_github"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -124,7 +148,7 @@ DEFAULT_COLOR=$DEFAULT_FOREGROUND
 #DEFAULT_USER=$USER
 
 POWERLEVEL9K_MODE="nerdfont-complete"
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 #POWERLEVEL9K_SHORTEN_STRATEGY="truncate_right"
 
 POWERLEVEL9K_DIR_OMIT_FIRST_CHARACTER=false
@@ -132,7 +156,7 @@ POWERLEVEL9K_DIR_OMIT_FIRST_CHARACTER=false
 POWERLEVEL9K_ALWAYS_SHOW_CONTEXT=true
 POWERLEVEL9K_ALWAYS_SHOW_USER=false
 
-POWERLEVEL9K_CONTEXT_TEMPLATE="\uF300 %m"
+POWERLEVEL9K_CONTEXT_TEMPLATE="\uF312 %m"
 
 POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND="$DEFAULT_FOREGROUND"
 POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND="$DEFAULT_BACKGROUND"
@@ -167,7 +191,7 @@ POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{080}\u2570%F{080}\uF460%F{079}\uF4
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator context dir_writable dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time background_jobs status ssh node_version)
 
-POWERLEVEL9K_NODE_VERSION_FOREGROUND=253
+POWERLEVEL9K_NODE_VERSION_FOREGROUND=238
 
 POWERLEVEL9K_VCS_CLEAN_BACKGROUND="green"
 POWERLEVEL9K_VCS_CLEAN_FOREGROUND="$DEFAULT_BACKGROUND"
@@ -185,11 +209,13 @@ POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="$DEFAULT_BACKGROUND"
 POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_BACKGROUND="$DEFAULT_FOREGROUND"
 POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_FOREGROUND="$DEFAULT_BACKGROUND"
 
+POWERLEVEL9K_OK_ICON=" "
 POWERLEVEL9K_STATUS_OK_FOREGROUND="$DEFAULT_FOREGROUND"
 POWERLEVEL9K_STATUS_OK_FOREGROUND="green"
 POWERLEVEL9K_STATUS_OK_BACKGROUND="$DEFAULT_BACKGROUND"
 POWERLEVEL9K_STATUS_OK_BACKGROUND="$(( $DEFAULT_BACKGROUND + 2 ))"
 
+POWERLEVEL9K_FAIL_ICON=" "
 POWERLEVEL9K_STATUS_ERROR_FOREGROUND="$DEFAULT_FOREGROUND"
 POWERLEVEL9K_STATUS_ERROR_FOREGROUND="red"
 POWERLEVEL9K_STATUS_ERROR_BACKGROUND="$DEFAULT_BACKGROUND"
@@ -208,7 +234,7 @@ POWERLEVEL9K_VCS_GIT_ICON="\uE702"
 
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND="$DEFAULT_BACKGROUND"
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND="$DEFAULT_FOREGROUND"
-POWERLEVEL9K_EXECUTION_TIME_ICON="\u23F1"
+POWERLEVEL9K_EXECUTION_TIME_ICON="\u23F1 "
 
 #POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=0
 #POWERLEVEL9K_COMMAND_EXECUTION_TIME_PRECISION=0
@@ -434,7 +460,9 @@ alias apg="sudo apt upgrade"
 alias apdg="sudo apt update && sudo apt upgrade"
 
 # Git aliases
-alias gcm="git commit -m"
+alias gitcm="git add . && git commit -m"
+alias git="hub"
+alias gco="git checkout"
 # =============================================================================
 #                                Key Bindings
 # =============================================================================
@@ -546,3 +574,9 @@ fi
 #ZLE_RPROMPT_INDENT=0
 
 # vim: ft=zsh
+############################################
+#	NVM
+############################################
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
