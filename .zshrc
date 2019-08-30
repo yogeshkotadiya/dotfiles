@@ -33,7 +33,7 @@ export PATH=/home/$HOSTNAME/flutter/bin:$PATH
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -106,9 +106,6 @@ source $ZSH/oh-my-zsh.sh
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-
-# ssh
-export SSH_KEY_PATH="~/.ssh/rsa_id_github"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -320,7 +317,7 @@ source ~/.zplug/init.zsh
 #zplug "b4b4r07/enhancd", use:init.sh
 zplug "b4b4r07/enhancd", use:enhancd.sh
 #zplug "b4b4r07/zsh-vimode-visual", defer:3
-zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+zplug "romkatv/powerlevel10k", use:powerlevel10k.zsh-theme
 #zplug "knu/zsh-manydots-magic", use:manydots-magic, defer:2
 zplug "seebi/dircolors-solarized", ignore:"*", as:plugin
 
