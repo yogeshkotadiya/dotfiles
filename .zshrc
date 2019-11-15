@@ -5,6 +5,9 @@
 # User or Hostname Name
 HOSTNAME="yogesh"
 
+# Linux Brew PATH
+export PATH=/home/yogesh/.linuxbrew/bin:$PATH
+
 export PATH=~/.yarn/bin:$PATH
 #export TERM="xterm-256color"
 export VISUAL="vim"
@@ -24,7 +27,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export GOROOT=/usr/lib/go
 export PATH=$PATH:$GOROOT/bin
-export GOPATH=/home/$HOSTNAME/go
+export GOPATH=/mnt/Workspace/go
 export PATH=$PATH:$GOPATH/bin
 
 # Flutter Env
@@ -174,8 +177,8 @@ POWERLEVEL9K_STATUS_VERBOSE=true
 POWERLEVEL9K_STATUS_CROSS=true
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%F{080}\u256D\u2500%f"
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{080}\u2570%F{080}\uF460%F{079}\uF460%F{078}\uF460%f "
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
+POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="\u20%F{011}\u2771%F{039}\u2771%F{164}\u2771%f\u20"
 #POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="╭─%f"
 #POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="╰─%F{008}\uF460 %f"
 #POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
@@ -186,9 +189,11 @@ POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{080}\u2570%F{080}\uF460%F{079}\uF4
 
 #POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context ssh root_indicator dir_writable dir )
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator context dir_writable dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time background_jobs status ssh node_version)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time background_jobs status ssh go_version node_version)
 
-POWERLEVEL9K_NODE_VERSION_FOREGROUND=238
+POWERLEVEL9K_NODE_VERSION_FOREGROUND="238"
+POWERLEVEL9k_GO_VERSION_FOREGROUND="238"
+POWERLEVEL9K_GO_VERSION_PROMPT_ALWAYS_SHOW=true
 
 POWERLEVEL9K_VCS_CLEAN_BACKGROUND="green"
 POWERLEVEL9K_VCS_CLEAN_FOREGROUND="$DEFAULT_BACKGROUND"
@@ -317,6 +322,7 @@ source ~/.zplug/init.zsh
 #zplug "b4b4r07/enhancd", use:init.sh
 zplug "b4b4r07/enhancd", use:enhancd.sh
 #zplug "b4b4r07/zsh-vimode-visual", defer:3
+#zplug "bhilburn/powerlevel9k", use:powerlevel9k.theme
 zplug "romkatv/powerlevel10k", use:powerlevel10k.zsh-theme
 #zplug "knu/zsh-manydots-magic", use:manydots-magic, defer:2
 zplug "seebi/dircolors-solarized", ignore:"*", as:plugin
@@ -328,7 +334,7 @@ zplug "seebi/dircolors-solarized", ignore:"*", as:plugin
 #zplug "plugins/git", from:oh-my-zsh, if:"which git"
 #zplug "plugins/globalias", from:oh-my-zsh
 #zplug "plugins/gpg-agent", from:oh-my-zsh, if:"which gpg-agent"
-#zplug "plugins/httpie", from:oh-my-zsh, if:"which httpie"
+zplug "plugins/httpie", from:oh-my-zsh, if:"which httpie"
 #zplug "plugins/nanoc", from:oh-my-zsh, if:"which nanoc"
 #zplug "plugins/vi-mode", from:oh-my-zsh
 
@@ -577,3 +583,8 @@ fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/vault vault
+
+eval $(thefuck --alias)
