@@ -1,23 +1,40 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+# End Nix
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 #export PATH=~/.npm-global/bin:$PATH
 
+export EDITOR="nvim"
+export GPG_TTY=$(tty)
+
 # User or Hostname Name
 HOSTNAME="yogesh"
+USERHOME=/Users/yogesh
 
 # Linux Brew PATH
-export PATH=/home/yogesh/.linuxbrew/bin:$PATH
+export PATH=/Users/yogesh/.linuxbrew/bin:$PATH
+export PATH=$PATH:/usr/local/mysql/bin/
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
-export PATH=~/.yarn/bin:$PATH
 #export TERM="xterm-256color"
 export VISUAL="vim"
 # Path to your oh-my-zsh installation.
-export ZSH=/home/$HOSTNAME/.oh-my-zsh
+export ZSH=/Users/$HOSTNAME/.oh-my-zsh
 
 # Java and Android Studio Paths
 
 export PATH=/usr/lib/jvm/java-8-openjdk/bin:$PATH
-export ANDROID_HOME=/home/$HOSTNAME/Android/Sdk
+export ANDROID_HOME=/Users/$HOSTNAME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
@@ -25,19 +42,26 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # Go-lang Settings
 
-export GOROOT=/usr/lib/go
-export PATH=$PATH:$GOROOT/bin
-export GOPATH=/mnt/Workspace/go
-export PATH=$PATH:$GOPATH/bin
+#export GOROOT=/usr/local/opt/go/libexec
+# export GOROOT=$(which go)
+# export PATH=$PATH:$GOROOT/bin
+# export GOPATH=$USERHOME/go-workspace
+# export PATH=$PATH:$GOPATH/bin
 
 # Flutter Env
-export PATH=/home/$HOSTNAME/flutter/bin:$PATH
+export PATH=/Users/$HOSTNAME/flutter/bin:$PATH
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
+# Python Settings
+
+export PATH="/usr/local/opt/mysql-client@5.7/bin:$PATH"
+export PATH="$HOME/.pyenv/bin:$PATH"
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
 # cause zsh load theme from this variable instead of
@@ -88,7 +112,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git zsh-autosuggestions ssh-agent
+  git zsh-autosuggestions ssh-agent elixir
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -125,172 +149,10 @@ if [[ -r /usr/share/powerline/bindings/zsh/powerline.zsh ]]; then
 fi
 
 # =============================================================================
-#                                   Functions
-# =============================================================================
-powerlevel9k_random_color(){
-	local code
-	#for code ({000..255}) echo -n "$%F{$code}"
-	#code=$[${RANDOM}%11+10]    # random between 10-20
-	code=$[${RANDOM}%211+20]    # random between 20-230
-	printf "%03d" $code
-}
-
-# =============================================================================
 #                                   Variables
 # =============================================================================
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
-
-DEFAULT_FOREGROUND=006 DEFAULT_BACKGROUND=235
-DEFAULT_COLOR=$DEFAULT_FOREGROUND
-
-# powerlevel9k prompt theme
-#DEFAULT_USER=$USER
-
-POWERLEVEL9K_MODE="nerdfont-complete"
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
-#POWERLEVEL9K_SHORTEN_STRATEGY="truncate_right"
-
-POWERLEVEL9K_DIR_OMIT_FIRST_CHARACTER=false
-
-POWERLEVEL9K_ALWAYS_SHOW_CONTEXT=true
-POWERLEVEL9K_ALWAYS_SHOW_USER=false
-
-POWERLEVEL9K_CONTEXT_TEMPLATE="\uF312 %m"
-
-POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND="$DEFAULT_FOREGROUND"
-POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND="$DEFAULT_BACKGROUND"
-POWERLEVEL9K_CONTEXT_SUDO_FOREGROUND="yellow"
-POWERLEVEL9K_CONTEXT_SUDO_BACKGROUND="$DEFAULT_BACKGROUND"
-POWERLEVEL9K_CONTEXT_ROOT_FOREGROUND="$DEFAULT_FOREGROUND"
-POWERLEVEL9K_CONTEXT_ROOT_BACKGROUND="$DEFAULT_BACKGROUND"
-
-POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR="\uE0B0"
-POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR="%F{$(( $DEFAULT_BACKGROUND - 2 ))}|%f"
-POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR="\uE0B2"
-POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR="%F{$(( $DEFAULT_BACKGROUND - 2 ))}|%f"
-
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_RPROMPT_ON_NEWLINE=false
-
-POWERLEVEL9K_STATUS_VERBOSE=true
-POWERLEVEL9K_STATUS_CROSS=true
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="\u20%F{011}\u2771%F{039}\u2771%F{164}\u2771%f\u20"
-#POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="╭─%f"
-#POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="╰─%F{008}\uF460 %f"
-#POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
-#POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{008}> %f"
-
-#POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="╭"
-#POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="╰\uF460 "
-
-#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context ssh root_indicator dir_writable dir )
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator context dir_writable dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time background_jobs status ssh go_version node_version)
-
-POWERLEVEL9K_NODE_VERSION_FOREGROUND="238"
-POWERLEVEL9k_GO_VERSION_FOREGROUND="238"
-POWERLEVEL9K_GO_VERSION_PROMPT_ALWAYS_SHOW=true
-
-POWERLEVEL9K_VCS_CLEAN_BACKGROUND="green"
-POWERLEVEL9K_VCS_CLEAN_FOREGROUND="$DEFAULT_BACKGROUND"
-POWERLEVEL9K_VCS_MODIFIED_BACKGROUND="yellow"
-POWERLEVEL9K_VCS_MODIFIED_FOREGROUND="$DEFAULT_BACKGROUND"
-POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND="magenta"
-POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND="$DEFAULT_BACKGROUND"
-
-POWERLEVEL9K_DIR_HOME_BACKGROUND="$DEFAULT_FOREGROUND"
-POWERLEVEL9K_DIR_HOME_FOREGROUND="$DEFAULT_BACKGROUND"
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND="$DEFAULT_FOREGROUND"
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="$DEFAULT_BACKGROUND"
-POWERLEVEL9K_DIR_DEFAULT_BACKGROUND="$DEFAULT_FOREGROUND"
-POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="$DEFAULT_BACKGROUND"
-POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_BACKGROUND="$DEFAULT_FOREGROUND"
-POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_FOREGROUND="$DEFAULT_BACKGROUND"
-
-POWERLEVEL9K_OK_ICON=" "
-POWERLEVEL9K_STATUS_OK_FOREGROUND="$DEFAULT_FOREGROUND"
-POWERLEVEL9K_STATUS_OK_FOREGROUND="green"
-POWERLEVEL9K_STATUS_OK_BACKGROUND="$DEFAULT_BACKGROUND"
-POWERLEVEL9K_STATUS_OK_BACKGROUND="$(( $DEFAULT_BACKGROUND + 2 ))"
-
-POWERLEVEL9K_FAIL_ICON=" "
-POWERLEVEL9K_STATUS_ERROR_FOREGROUND="$DEFAULT_FOREGROUND"
-POWERLEVEL9K_STATUS_ERROR_FOREGROUND="red"
-POWERLEVEL9K_STATUS_ERROR_BACKGROUND="$DEFAULT_BACKGROUND"
-POWERLEVEL9K_STATUS_ERROR_BACKGROUND="$(( $DEFAULT_BACKGROUND + 2 ))"
-
-POWERLEVEL9K_HISTORY_FOREGROUND="$DEFAULT_FOREGROUND"
-
-POWERLEVEL9K_TIME_FORMAT="%D{%T \uF017}" #  15:29:33
-POWERLEVEL9K_TIME_FOREGROUND="$DEFAULT_FOREGROUND"
-POWERLEVEL9K_TIME_BACKGROUND="$DEFAULT_BACKGROUND"
-
-POWERLEVEL9K_VCS_GIT_GITHUB_ICON="\uE709"
-POWERLEVEL9K_VCS_GIT_BITBUCKET_ICON="\uE703"
-POWERLEVEL9K_VCS_GIT_GITLAB_ICON=""
-POWERLEVEL9K_VCS_GIT_ICON="\uE702"
-
-POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND="$DEFAULT_BACKGROUND"
-POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND="$DEFAULT_FOREGROUND"
-POWERLEVEL9K_EXECUTION_TIME_ICON="\u23F1 "
-
-#POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=0
-#POWERLEVEL9K_COMMAND_EXECUTION_TIME_PRECISION=0
-
-POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND="$DEFAULT_BACKGROUND"
-POWERLEVEL9K_BACKGROUND_JOBS_BACKGROUND="$DEFAULT_FOREGROUND"
-
-POWERLEVEL9K_USER_ICON="\uF415" # 
-POWERLEVEL9K_USER_DEFAULT_FOREGROUND="$DEFAULT_FOREGROUND"
-POWERLEVEL9K_USER_DEFAULT_BACKGROUND="$DEFAULT_BACKGROUND"
-POWERLEVEL9K_USER_ROOT_FOREGROUND="$DEFAULT_FOREGROUND"
-POWERLEVEL9K_USER_ROOT_BACKGROUND="$DEFAULT_BACKGROUND"
-
-POWERLEVEL9K_ROOT_INDICATOR_FOREGROUND="$DEFAULT_FOREGROUND"
-POWERLEVEL9K_ROOT_INDICATOR_FOREGROUND="magenta"
-POWERLEVEL9K_ROOT_INDICATOR_BACKGROUND="$DEFAULT_BACKGROUND"
-POWERLEVEL9K_ROOT_INDICATOR_BACKGROUND="$(( $DEFAULT_BACKGROUND + 2 ))"
-POWERLEVEL9K_ROOT_INDICATOR_BACKGROUND="$(( $DEFAULT_BACKGROUND - 2 ))"
-POWERLEVEL9K_ROOT_ICON=$'\uFF03' # ＃
-#POWERLEVEL9K_ROOT_ICON=$'\uF198'  # 
-
-POWERLEVEL9K_SSH_FOREGROUND="$DEFAULT_FOREGROUND"
-POWERLEVEL9K_SSH_FOREGROUND="yellow"
-POWERLEVEL9K_SSH_BACKGROUND="$DEFAULT_BACKGROUND"
-POWERLEVEL9K_SSH_BACKGROUND="$(( $DEFAULT_BACKGROUND + 2 ))"
-POWERLEVEL9K_SSH_BACKGROUND="$(( $DEFAULT_BACKGROUND - 2 ))"
-POWERLEVEL9K_SSH_ICON="\uF489"  # 
-
-POWERLEVEL9K_HOST_LOCAL_FOREGROUND="$DEFAULT_FOREGROUND"
-POWERLEVEL9K_HOST_LOCAL_BACKGROUND="$DEFAULT_BACKGROUND"
-POWERLEVEL9K_HOST_REMOTE_FOREGROUND="$DEFAULT_FOREGROUND"
-POWERLEVEL9K_HOST_REMOTE_BACKGROUND="$DEFAULT_BACKGROUND"
-
-POWERLEVEL9K_HOST_ICON_FOREGROUND="$DEFAULT_FOREGROUND"
-POWERLEVEL9K_HOST_ICON_BACKGROUND="$DEFAULT_BACKGROUND"
-POWERLEVEL9K_HOST_ICON="\uF119" # 
-
-POWERLEVEL9K_OS_ICON_FOREGROUND="$DEFAULT_FOREGROUND"
-POWERLEVEL9K_OS_ICON_BACKGROUND="$DEFAULT_BACKGROUND"
-
-POWERLEVEL9K_LOAD_CRITICAL_BACKGROUND="$DEFAULT_BACKGROUND"
-POWERLEVEL9K_LOAD_WARNING_BACKGROUND="$DEFAULT_BACKGROUND"
-POWERLEVEL9K_LOAD_NORMAL_BACKGROUND="$DEFAULT_BACKGROUND"
-POWERLEVEL9K_LOAD_CRITICAL_FOREGROUND="red"
-POWERLEVEL9K_LOAD_WARNING_FOREGROUND="yellow"
-POWERLEVEL9K_LOAD_NORMAL_FOREGROUND="green"
-POWERLEVEL9K_LOAD_CRITICAL_VISUAL_IDENTIFIER_COLOR="red"
-POWERLEVEL9K_LOAD_WARNING_VISUAL_IDENTIFIER_COLOR="yellow"
-POWERLEVEL9K_LOAD_NORMAL_VISUAL_IDENTIFIER_COLOR="green"
-
-POWERLEVEL9K_BATTERY_LEVEL_BACKGROUND_COLOR="$DEFAULT_BACKGROUND"
-POWERLEVEL9K_BATTERY_CHARGING_BACKGROUND="$DEFAULT_BACKGROUND"
-POWERLEVEL9K_BATTERY_CHARGED_BACKGROUND="$DEFAULT_BACKGROUND"
-POWERLEVEL9K_BATTERY_DISCONNECTED_BACKGROUND="$DEFAULT_BACKGROUND"
 
 # zsh-syntax-highlighting
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
@@ -339,7 +201,6 @@ zplug "plugins/httpie", from:oh-my-zsh, if:"which httpie"
 #zplug "plugins/vi-mode", from:oh-my-zsh
 
 zplug "plugins/git",    from:oh-my-zsh, if:"which git"
-zplug "plugins/go",     from:oh-my-zsh, if:"which go"
 zplug "plugins/golang", from:oh-my-zsh, if:"which go"
 zplug "plugins/nmap",   from:oh-my-zsh, if:"which nmap"
 zplug "plugins/sudo",   from:oh-my-zsh, if:"which sudo"
@@ -439,6 +300,7 @@ alias grep='() { $(whence -p grep) --color=auto $@ }'
 alias egrep='() { $(whence -p egrep) --color=auto $@ }'
 
 # Directory management
+alias ls='exa'
 alias la='ls -a'
 alias ll='ls -l'
 alias lal='ls -al'
@@ -466,6 +328,18 @@ alias apdg="sudo apt update && sudo apt upgrade"
 alias gitcm="git add . && git commit -m"
 alias git="hub"
 alias gco="git checkout"
+alias gpo="git pull origin"
+alias gpush="git push origin"
+alias lgt="lazygit"
+
+
+#kubectl
+
+alias kubectx="kubectl ctx"
+alias kubens="kubectl ns"
+# Misc aliases
+
+alias cat="bat"
 # =============================================================================
 #                                Key Bindings
 # =============================================================================
@@ -588,3 +462,31 @@ autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/vault vault
 
 eval $(thefuck --alias)
+
+export PATH="$HOME/.poetry/bin:$PATH"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+eval "$(direnv hook zsh)"
+
+export PATH=~/.bin:$PATH 
+export PATH=~/.yarn/bin:$PATH
+export PATH="$PATH:$(yarn global bin)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+fpath=(~/.stripe $fpath)
+
+eval "$(zoxide init zsh --cmd cd)"
+
+typeset -U path cdpath fpath manpath
+
+for profile in ${(z)NIX_PROFILES}; do
+  fpath+=($profile/share/zsh/site-functions $profile/share/zsh/$ZSH_VERSION/functions $profile/share/zsh/vendor-completions)
+done
+
+autoload -Uz compinit && compinit -i
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export PATH=/opt/homebrew/bin:/nix/store/xrvfccx93yf7dca8gfk7drqg43i8ga3q-hugo-0.121.1/bin:/nix/store/vwh2qqal1q101wv4jy40giavp73q0msd-clang-wrapper-16.0.6/bin:/nix/store/3vzbr8yb4c233lhi1qz78b8kaaxrjqcj-clang-16.0.6/bin:/nix/store/pzajj7gw0nazs3vzp6jld53q8ird5izr-coreutils-9.4/bin:/nix/store/0i7w6qsij8akg6h39qn67w9ig5hirv1a-cctools-binutils-darwin-wrapper-16.0.6-973.0.1/bin:/nix/store/i4sfjfz08vmnrj84asl2j5imakga12za-cctools-binutils-darwin-16.0.6-973.0.1/bin:/nix/store/pzajj7gw0nazs3vzp6jld53q8ird5izr-coreutils-9.4/bin:/nix/store/6x5inimwy8rlvf678yy080zccbw71alb-findutils-4.9.0/bin:/nix/store/01bzxsyn8dqz9fsdhp9r6ya796g5ydmf-diffutils-3.10/bin:/nix/store/9z9k8dwhhiryr7z2pz70zca0vwa15yqc-gnused-4.9/bin:/nix/store/zsm4xd527427rnjfnvfhvsld2n57b822-gnugrep-3.11/bin:/nix/store/hhc2x65zvp89lh15grqk21r6dcvifggy-gawk-5.2.2/bin:/nix/store/gclclfhq9blxp32lv8kxm9iv5060rx5f-gnutar-1.35/bin:/nix/store/crpi4clk07gy760ydbb710f74dy8q6c9-gzip-1.13/bin:/nix/store/qay0pa86lb712162d6m5lyw62iczb71d-bzip2-1.0.8-bin/bin:/nix/store/zc9qsb0rzlw0ckhy7097frcwb4pkfx3d-gnumake-4.4.1/bin:/nix/store/6nxav88iiz0g8m598xy643f8hhdz5kkx-bash-5.2-p21/bin:/nix/store/kizmwlnj40d11ixbap74c0syaqxn05wc-patch-2.7.6/bin:/nix/store/xcy0fr1dangwh9r9isay6fqbg91g5b3h-xz-5.4.5-bin/bin:/nix/store/x1bzwj6pz7f3ajg5y36x07b1328jzx7r-file-5.45/bin:/Users/yogesh/lab/personal/yogeshkotadiya.com/.direnv/bin:/Users/yogesh/.yarn/bin:/Users/yogesh/.bin:/Users/yogesh/.poetry/bin:/Users/yogesh/.zplug/bin:/Users/yogesh/.pyenv/bin:/usr/local/opt/mysql-client@5.7/bin:/Users/yogesh/flutter/bin:/usr/lib/jvm/java-8-openjdk/bin:/Users/yogesh/.krew/bin:/Users/yogesh/.linuxbrew/bin:/Users/yogesh/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin:/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin:/usr/local/mysql/bin/:/Users/yogesh/Android/Sdk/emulator:/Users/yogesh/Android/Sdk/tools:/Users/yogesh/Android/Sdk/tools/bin:/Users/yogesh/Android/Sdk/platform-tools
