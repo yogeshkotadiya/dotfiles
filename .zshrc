@@ -31,43 +31,10 @@ export VISUAL="vim"
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/$HOSTNAME/.oh-my-zsh
 
-# Java and Android Studio Paths
-
-export PATH=/usr/lib/jvm/java-8-openjdk/bin:$PATH
-export ANDROID_HOME=/Users/$HOSTNAME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-
-# Go-lang Settings
-
-#export GOROOT=/usr/local/opt/go/libexec
-# export GOROOT=$(which go)
-# export PATH=$PATH:$GOROOT/bin
-# export GOPATH=$USERHOME/go-workspace
-# export PATH=$PATH:$GOPATH/bin
-
-# Flutter Env
-export PATH=/Users/$HOSTNAME/flutter/bin:$PATH
-
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
-
-# Python Settings
-
-export PATH="/usr/local/opt/mysql-client@5.7/bin:$PATH"
-export PATH="$HOME/.pyenv/bin:$PATH"
-#eval "$(pyenv init -)"
-#eval "$(pyenv virtualenv-init -)"
-# Set list of themes to load
-# Setting this variable when ZSH_THEME=random
-# cause zsh load theme from this variable instead of
-# looking in ~/.oh-my-zsh/themes/
-# An empty array have no effect
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -116,32 +83,6 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Powerline
 if [[ -r /usr/share/powerline/bindings/zsh/powerline.zsh ]]; then
