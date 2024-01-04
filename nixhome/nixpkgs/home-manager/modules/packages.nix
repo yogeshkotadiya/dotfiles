@@ -23,7 +23,7 @@ let
 
     # code editors
     neovim
-    # helix
+    helix
   ];
 
   language_pkgs = with pkgs; [
@@ -38,9 +38,10 @@ let
     yarn
 
     # rust setup
-    rustc
-    cargo
-    rustfmt
+    # rustc
+    rustup
+    # cargo
+    # rustfmt
     wasm-pack
     binaryen
     wasm-bindgen-cli
@@ -125,7 +126,6 @@ let
     eza
     # cd
     zoxide
-    autojump
   ];
 in
 {

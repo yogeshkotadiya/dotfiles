@@ -386,9 +386,6 @@ fi
 [[ -f ~/.zsh_functions ]] && source ~/.zsh_functions
 [[ -f ~/.zsh_aliases ]] && source ~/.zsh_aliases
 
-#autoload -Uz compinit
-#compinit
-
 #ZLE_RPROMPT_INDENT=0
 
 # vim: ft=zsh
