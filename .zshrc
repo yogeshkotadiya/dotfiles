@@ -10,21 +10,12 @@ if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
   . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 fi
 # End Nix
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-#export PATH=~/.npm-global/bin:$PATH
 
 export EDITOR="nvim"
 export GPG_TTY=$(tty)
 
-# User or Hostname Name
-HOSTNAME="yogesh"
-USERHOME=/Users/yogesh
-
-# Linux Brew PATH
-export PATH=/Users/yogesh/.linuxbrew/bin:$PATH
-export PATH=$PATH:/usr/local/mysql/bin/
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+# To add/remove paths, run `edx paths` or edit ~/.shell/paths.zsh
+[[ ! -f ~/.shell/paths.zsh ]] || source ~/.shell/paths.zsh
 
 #export TERM="xterm-256color"
 export VISUAL="vim"
@@ -89,81 +80,11 @@ if [[ -r /usr/share/powerline/bindings/zsh/powerline.zsh ]]; then
     source /usr/share/powerline/bindings/zsh/powerline.zsh
 fi
 
-# =============================================================================
-#                                   Variables
-# =============================================================================
-export LANG="en_US.UTF-8"
-export LC_ALL="en_US.UTF-8"
+# To add/remove variables, run `edx variables` or edit ~/.shell/variables.zsh
+[[ ! -f ~/.shell/variables.zsh ]] || source ~/.shell/variables.zsh
 
-# zsh-syntax-highlighting
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
-ZSH_HIGHLIGHT_PATTERNS+=("rm -rf *" "fg=white,bold,bg=red")
-typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[path]="fg=white"
-ZSH_HIGHLIGHT_STYLES[path_pathseparator]="fg=grey"
-ZSH_HIGHLIGHT_STYLES[alias]="fg=cyan"
-ZSH_HIGHLIGHT_STYLES[builtin]="fg=cyan"
-ZSH_HIGHLIGHT_STYLES[function]="fg=cyan"
-ZSH_HIGHLIGHT_STYLES[command]="fg=green"
-ZSH_HIGHLIGHT_STYLES[precommand]="fg=green"
-ZSH_HIGHLIGHT_STYLES[hashed-command]="fg=green"
-ZSH_HIGHLIGHT_STYLES[commandseparator]="fg=yellow"
-ZSH_HIGHLIGHT_STYLES[redirection]="fg=magenta"
-ZSH_HIGHLIGHT_STYLES[bracket-level-1]="fg=cyan,bold"
-ZSH_HIGHLIGHT_STYLES[bracket-level-2]="fg=green,bold"
-ZSH_HIGHLIGHT_STYLES[bracket-level-3]="fg=magenta,bold"
-ZSH_HIGHLIGHT_STYLES[bracket-level-4]="fg=yellow,bold"
-
-# =============================================================================
-#                                   Plugins
-# =============================================================================
-# Check if zplug is installed
-[ ! -d ~/.zplug ] && git clone https://github.com/zplug/zplug ~/.zplug
-#source ~/.zplug/init.zsh && zplug update
-source ~/.zplug/init.zsh
-
-#zplug "b4b4r07/enhancd", use:init.sh
-zplug "b4b4r07/enhancd", use:enhancd.sh
-#zplug "b4b4r07/zsh-vimode-visual", defer:3
-#zplug "bhilburn/powerlevel9k", use:powerlevel9k.theme
-zplug "romkatv/powerlevel10k", use:powerlevel10k.zsh-theme
-#zplug "knu/zsh-manydots-magic", use:manydots-magic, defer:2
-zplug "seebi/dircolors-solarized", ignore:"*", as:plugin
-
-#zplug "plugins/bundler", from:oh-my-zsh, if:"which bundle"
-#zplug "plugins/colored-man-pages", from:oh-my-zsh
-#zplug "plugins/extract", from:oh-my-zsh
-#zplug "plugins/fancy-ctrl-z", from:oh-my-zsh
-#zplug "plugins/git", from:oh-my-zsh, if:"which git"
-#zplug "plugins/globalias", from:oh-my-zsh
-#zplug "plugins/gpg-agent", from:oh-my-zsh, if:"which gpg-agent"
-zplug "plugins/httpie", from:oh-my-zsh, if:"which httpie"
-#zplug "plugins/nanoc", from:oh-my-zsh, if:"which nanoc"
-#zplug "plugins/vi-mode", from:oh-my-zsh
-
-zplug "plugins/git",    from:oh-my-zsh, if:"which git"
-zplug "plugins/golang", from:oh-my-zsh, if:"which go"
-zplug "plugins/nmap",   from:oh-my-zsh, if:"which nmap"
-zplug "plugins/sudo",   from:oh-my-zsh, if:"which sudo"
-zplug "plugins/tmux",   from:oh-my-zsh, if:"which tmux"
-
-# Supports oh-my-zsh plugins and the like
-if [[ $OSTYPE = (linux)* ]]; then
-	zplug "plugins/archlinux", from:oh-my-zsh, if:"which pacman"
-	zplug "plugins/dnf",       from:oh-my-zsh, if:"which dnf"
-	zplug "plugins/ubuntu",    from:oh-my-zsh, if:"which apt"
-fi
-
-if [[ $OSTYPE = (darwin)* ]]; then
-	zplug "plugins/osx",      from:oh-my-zsh
-	zplug "plugins/brew",     from:oh-my-zsh, if:"which brew"
-	zplug "plugins/macports", from:oh-my-zsh, if:"which port"
-fi
-
-zplug "zsh-users/zsh-completions",              defer:0
-zplug "zsh-users/zsh-autosuggestions",          defer:2, on:"zsh-users/zsh-completions"
-zplug "zsh-users/zsh-syntax-highlighting",      defer:3, on:"zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-history-substring-search", defer:3, on:"zsh-users/zsh-syntax-highlighting"
+# To add/remove plugins, run `edx plugins` or edit ~/.shell/plugins.zsh
+[[ ! -f ~/.shell/plugins.zsh ]] || source ~/.shell/plugins.zsh
 
 # =============================================================================
 #                                   Options
@@ -204,107 +125,8 @@ setopt pushd_minus              # Reference stack entries with "-".
 
 setopt extended_glob
 
-# =============================================================================
-#                                   Aliases
-# =============================================================================
-
-# In the definitions below, you will see use of function definitions instead of
-# aliases for some cases. We use this method to avoid expansion of the alias in
-# combination with the globalias plugin.
-
-# Directory coloring
-if [[ $OSTYPE = (darwin|freebsd)* ]]; then
-	export CLICOLOR="YES" # Equivalent to passing -G to ls.
-	export LSCOLORS="exgxdHdHcxaHaHhBhDeaec"
-
-	[ -d "/opt/local/bin" ] && export PATH="/opt/local/bin:$PATH"
-
-	# Prefer GNU version, since it respects dircolors.
-	if which gls &>/dev/null; then
-		alias ls='() { $(whence -p gls) -Ctr --file-type --color=auto $@ }'
-	else
-		alias ls='() { $(whence -p ls) -CFtr $@ }'
-	fi
-else
-	alias ls='() { $(whence -p ls) -Ctr --file-type --color=auto $@ }'
-fi
-
-# Set editor preference to nvim if available.
-if which nvim &>/dev/null; then
-	alias vim='() { $(whence -p nvim) $@ }'
-else
-	alias vim='() { $(whence -p vim) $@ }'
-fi
-
-# Generic command adaptations.
-alias grep='() { $(whence -p grep) --color=auto $@ }'
-alias egrep='() { $(whence -p egrep) --color=auto $@ }'
-
-# Directory management
-alias ls='exa'
-alias la='ls -a'
-alias ll='ls -l'
-alias lal='ls -al'
-alias d='dirs -v'
-alias 1='pu'
-alias 2='pu -2'
-alias 3='pu -3'
-alias 4='pu -4'
-alias 5='pu -5'
-alias 6='pu -6'
-alias 7='pu -7'
-alias 8='pu -8'
-alias 9='pu -9'
-alias pu='() { pushd $1 &> /dev/null; dirs -v; }'
-alias po='() { popd &> /dev/null; dirs -v; }'
-
-zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
-
-# Ubuntu aliases
-alias apd="sudo apt update"
-alias apg="sudo apt upgrade"
-alias apdg="sudo apt update && sudo apt upgrade"
-
-# Git aliases
-alias gitcm="git add . && git commit -m"
-alias git="hub"
-alias gco="git checkout"
-alias gpo="git pull origin"
-alias gpush="git push origin"
-alias lgt="lazygit"
-
-
-#kubectl
-
-alias kubectx="kubectl ctx"
-alias kubens="kubectl ns"
-# Misc aliases
-
-alias cat="bat"
-# =============================================================================
-#                                Key Bindings
-# =============================================================================
-
-# Common CTRL bindings.
-bindkey "^a" beginning-of-line
-bindkey "^e" end-of-line
-bindkey "^f" forward-word
-bindkey "^b" backward-word
-bindkey "^k" kill-line
-bindkey "^d" delete-char
-bindkey "^y" accept-and-hold
-bindkey "^w" backward-kill-word
-bindkey "^u" backward-kill-line
-bindkey "^R" history-incremental-pattern-search-backward
-bindkey "^F" history-incremental-pattern-search-forward
-
-# Do not require a space when attempting to tab-complete.
-bindkey "^i" expand-or-complete-prefix
-
-# Fixes for alt-backspace and arrows keys
-bindkey '^[^?' backward-kill-word
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
+# To add/remove aliases, run `edx aliases configure` or edit ~/.shell/aliases.zsh
+[[ ! -f ~/.shell/aliases.zsh ]] || source ~/.shell/aliases.zsh
 
 # =============================================================================
 #                                 Completions
@@ -377,8 +199,6 @@ if zplug check "zsh-users/zsh-history-substring-search"; then
 	bindkey "^[[1;5B" history-substring-search-down
 fi
 
-[ -d "$HOME/bin" ] && export PATH="$HOME/bin:$PATH"
-
 # Source local zsh customizations.
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
@@ -401,20 +221,16 @@ complete -o nospace -C /usr/bin/vault vault
 
 eval $(thefuck --alias)
 
-export PATH="$HOME/.poetry/bin:$PATH"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 eval "$(direnv hook zsh)"
-
-export PATH=~/.bin:$PATH 
-export PATH=~/.yarn/bin:$PATH
-export PATH="$PATH:$(yarn global bin)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 fpath=(~/.stripe $fpath)
 
 eval "$(zoxide init zsh --cmd cd)"
+eval "$(atuin init zsh --disable-up-arrow)"
 
 typeset -U path cdpath fpath manpath
 
@@ -425,6 +241,4 @@ done
 autoload -Uz compinit && compinit -i
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-export PATH=/opt/homebrew/bin:/nix/store/xrvfccx93yf7dca8gfk7drqg43i8ga3q-hugo-0.121.1/bin:/nix/store/vwh2qqal1q101wv4jy40giavp73q0msd-clang-wrapper-16.0.6/bin:/nix/store/3vzbr8yb4c233lhi1qz78b8kaaxrjqcj-clang-16.0.6/bin:/nix/store/pzajj7gw0nazs3vzp6jld53q8ird5izr-coreutils-9.4/bin:/nix/store/0i7w6qsij8akg6h39qn67w9ig5hirv1a-cctools-binutils-darwin-wrapper-16.0.6-973.0.1/bin:/nix/store/i4sfjfz08vmnrj84asl2j5imakga12za-cctools-binutils-darwin-16.0.6-973.0.1/bin:/nix/store/pzajj7gw0nazs3vzp6jld53q8ird5izr-coreutils-9.4/bin:/nix/store/6x5inimwy8rlvf678yy080zccbw71alb-findutils-4.9.0/bin:/nix/store/01bzxsyn8dqz9fsdhp9r6ya796g5ydmf-diffutils-3.10/bin:/nix/store/9z9k8dwhhiryr7z2pz70zca0vwa15yqc-gnused-4.9/bin:/nix/store/zsm4xd527427rnjfnvfhvsld2n57b822-gnugrep-3.11/bin:/nix/store/hhc2x65zvp89lh15grqk21r6dcvifggy-gawk-5.2.2/bin:/nix/store/gclclfhq9blxp32lv8kxm9iv5060rx5f-gnutar-1.35/bin:/nix/store/crpi4clk07gy760ydbb710f74dy8q6c9-gzip-1.13/bin:/nix/store/qay0pa86lb712162d6m5lyw62iczb71d-bzip2-1.0.8-bin/bin:/nix/store/zc9qsb0rzlw0ckhy7097frcwb4pkfx3d-gnumake-4.4.1/bin:/nix/store/6nxav88iiz0g8m598xy643f8hhdz5kkx-bash-5.2-p21/bin:/nix/store/kizmwlnj40d11ixbap74c0syaqxn05wc-patch-2.7.6/bin:/nix/store/xcy0fr1dangwh9r9isay6fqbg91g5b3h-xz-5.4.5-bin/bin:/nix/store/x1bzwj6pz7f3ajg5y36x07b1328jzx7r-file-5.45/bin:/Users/yogesh/lab/personal/yogeshkotadiya.com/.direnv/bin:/Users/yogesh/.yarn/bin:/Users/yogesh/.bin:/Users/yogesh/.poetry/bin:/Users/yogesh/.zplug/bin:/Users/yogesh/.pyenv/bin:/usr/local/opt/mysql-client@5.7/bin:/Users/yogesh/flutter/bin:/usr/lib/jvm/java-8-openjdk/bin:/Users/yogesh/.krew/bin:/Users/yogesh/.linuxbrew/bin:/Users/yogesh/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin:/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin:/usr/local/mysql/bin/:/Users/yogesh/Android/Sdk/emulator:/Users/yogesh/Android/Sdk/tools:/Users/yogesh/Android/Sdk/tools/bin:/Users/yogesh/Android/Sdk/platform-tools
+[[ ! -f ~/.shell/p10k.zsh ]] || source ~/.shell/p10k.zsh

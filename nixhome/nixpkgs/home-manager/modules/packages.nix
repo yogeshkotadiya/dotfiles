@@ -54,10 +54,10 @@ let
     go
 
     # elixir
-    elixir_1_14
+    elixir_1_16
 
+    # flutter - Currently disabled because it's not supported on M series macs
     # flutter
-    flutter
 
     # database tools / client
     postgresql
@@ -126,6 +126,8 @@ let
     eza
     # cd
     zoxide
+    # command history
+    atuin
   ];
 in
 {
