@@ -70,6 +70,8 @@ let
     # http helpers
     wget
     ngrok
+    gping
+    curlie
 
     # local proxy
     mkcert
@@ -102,6 +104,9 @@ let
     tree
     # 
     exiftool
+
+    # cheatsheet
+    navi
   ];
 
   network_pkgs = with pkgs; [
@@ -123,7 +128,7 @@ let
     # find alternative
     fd
     # ls alternative
-    eza
+    lsd
     # cd
     zoxide
     # command history
