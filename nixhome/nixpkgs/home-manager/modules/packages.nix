@@ -52,6 +52,9 @@ let
 
     # go lang setup
     go
+    gopls
+    go-tools
+    delve
 
     # elixir
     elixir_1_16
@@ -102,6 +105,7 @@ let
     fzf
     # directory structure viewer
     tree
+    broot
     # 
     exiftool
 
@@ -114,11 +118,14 @@ let
     kubectl
     kubectx
     k9s
+    kubernetes-helm
 
     # aws cli
     awscli2
     # fly.io cli
     flyctl
+    # Cloudflare cli
+    cloudflared
   ];
 
   cli_alternatives_pkgs = with pkgs; [

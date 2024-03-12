@@ -68,6 +68,9 @@ alias gpo="git pull origin"
 alias gpush="git push origin"
 alias lgt="lazygit"
 
+gch() {
+ git checkout "$(git branch --all | fzf| tr -d '[:space:]')"
+}
 
 #kubectl
 
