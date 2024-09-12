@@ -7,6 +7,7 @@ let
     nix-zsh-completions
     tmux
     direnv
+    zellij
 
     # version control
     git
@@ -24,6 +25,7 @@ let
     # code editors
     neovim
     helix
+    vscode
   ];
 
   language_pkgs = with pkgs; [
@@ -31,7 +33,8 @@ let
     asdf
 
     # nodejs setup
-    nodejs-18_x
+    nodejs_20
+    corepack_20
     nodePackages.eslint_d
     nodePackages.prettier
     nodePackages.serve
@@ -119,6 +122,7 @@ let
     kubectx
     k9s
     kubernetes-helm
+    kind
 
     # aws cli
     awscli2
@@ -154,6 +158,10 @@ in
     # mac specific packages
     pkgs.lib.optionals pkgs.stdenv.isDarwin [
       pkgs.coreutils
+
+      # For file_system on macOS.
+      pkgs.darwin.apple_sdk.frameworks.CoreFoundation
+      pkgs.darwin.apple_sdk.frameworks.CoreServices
     ] ++
     # linux specific packages
     pkgs.lib.optionals pkgs.stdenv.isLinux [

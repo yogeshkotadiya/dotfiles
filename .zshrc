@@ -242,3 +242,15 @@ autoload -Uz compinit && compinit -i
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.shell/p10k.zsh ]] || source ~/.shell/p10k.zsh
+
+# pnpm
+export PNPM_HOME="/Users/yogesh/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+export PATH="$HOME/.local/share/mise/shims:$PATH"
+eval "$(~/.local/bin/mise activate zsh)"
+
+. "$HOME/.asdf/asdf.sh"
