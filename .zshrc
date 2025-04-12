@@ -250,7 +250,16 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-export PATH="$HOME/.local/share/mise/shims:$PATH"
-eval "$(~/.local/bin/mise activate zsh)"
 
 . "$HOME/.asdf/asdf.sh"
+
+# Added by Windsurf
+export PATH="/Users/yogesh/.codeium/windsurf/bin:$PATH"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/yogesh/.lmstudio/bin"
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/yogesh/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions

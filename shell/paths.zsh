@@ -8,10 +8,12 @@ USERHOME=/Users/yogesh
 export PATH=$PATH:/usr/local/mysql/bin/
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
-export PATH=~/.bin:$PATH 
+export PATH=~/.bin:$PATH
 export PATH=~/.yarn/bin:$PATH
 export PATH="$PATH:$(yarn global bin)"
 
+# Flutter
+export PATH=~/flutter/bin:$PATH
 
 export PATH="$HOME/.poetry/bin:$PATH"
 

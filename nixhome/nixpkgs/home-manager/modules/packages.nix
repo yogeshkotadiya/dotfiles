@@ -1,6 +1,9 @@
 { config, pkgs, pkgsUnstable, ... }:
 let
   core_pkgs = with pkgs; [
+    # system
+    ncurses5
+
     # shell
     zsh
     zsh-completions
@@ -17,7 +20,7 @@ let
     hub
 
     # fonts
-    (nerdfonts.override { fonts = [ "FiraCode" ]; })
+    nerd-fonts.fira-code
 
     # nix packages
     nixpkgs-fmt
@@ -26,15 +29,21 @@ let
     neovim
     helix
     vscode
+
+    # containers
+    podman
+    podman-compose
+    gvproxy
   ];
 
   language_pkgs = with pkgs; [
     # package managers
     asdf
+    mise
 
     # nodejs setup
-    nodejs_20
-    corepack_20
+    nodejs_22
+    corepack_22
     nodePackages.eslint_d
     nodePackages.prettier
     nodePackages.serve
@@ -59,8 +68,9 @@ let
     go-tools
     delve
 
-    # elixir
-    elixir_1_16
+    # elixir / erlang
+    beam27Packages.elixir_1_18
+    erlang_27
 
     # flutter - Currently disabled because it's not supported on M series macs
     # flutter
@@ -68,6 +78,9 @@ let
     # database tools / client
     postgresql
     redis
+
+    # nix
+    nixd
   ];
 
   cli_tools = with pkgs; [
@@ -96,8 +109,8 @@ let
     speedtest-cli
     # youtube downloader
     yt-dlp
-    # ffmpeg 5 with all deps
-    ffmpeg_5-full
+    # ffmpeg 7 with all deps
+    ffmpeg_7-full
     # system info
     neofetch
     # json processor
@@ -109,7 +122,7 @@ let
     # directory structure viewer
     tree
     broot
-    # 
+    #
     exiftool
 
     # cheatsheet
